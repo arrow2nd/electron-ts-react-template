@@ -33,6 +33,9 @@ const base: Configuration = {
             options: {
               sourceMap: isDevelop
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       },

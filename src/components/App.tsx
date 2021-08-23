@@ -3,7 +3,7 @@ import '../styles/App.css'
 
 const App = (): JSX.Element => (
   <div className="App">
-    <h1>Hello, Electron!</h1>
+    <span className="text-xl">Hello, Electron!</span>
   </div>
 )
 
