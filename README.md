@@ -1,6 +1,6 @@
 ## electron-ts-react-template
 
-(自分用) Electron + TypeScript + React
+(自分用) Electron + TypeScript + React + Tailwind CSS + Webpack
 
 ### Usege
 
