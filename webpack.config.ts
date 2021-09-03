@@ -1,5 +1,7 @@
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import path from 'path'
+import TailwindCss from 'tailwindcss'
+import Autoprefixer from 'autoprefixer'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
@@ -35,12 +37,17 @@ const base: Configuration = {
             }
           },
           {
-            loader: 'postcss-loader'
+            loader: 'postcss-loader',
+            options: {
+              postcssOptions: {
+                plugins: [TailwindCss, Autoprefixer]
+              }
+            }
           }
         ]
       },
       {
-        test: /\.svg$/,
+        test: /\.png$/,
         type: 'asset/resource'
       }
     ]
@@ -70,13 +77,17 @@ const preload: Configuration = {
 }
 
 // renderer.ts
-const renderer: Configuration = {
+const renderer = {
   ...base,
   target: 'web',
   entry: {
     renderer: path.resolve(__dirname, 'src', 'renderer.tsx')
   },
   plugins: [
+    // package.json内のバージョン情報を内部で使用可能に
+    new DefinePlugin({
+      'process.env.VERSION': JSON.stringify(process.env.npm_package_version)
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src', 'index.html'),
@@ -84,7 +95,7 @@ const renderer: Configuration = {
       scriptLoading: 'blocking',
       minify: !isDevelop
     }),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({ filename: 'style.css' })
   ]
 }
 
