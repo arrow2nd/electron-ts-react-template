@@ -8,12 +8,11 @@ const createWindow = (): void => {
     width: 600,
     height: 400,
     webPreferences: {
-      // https://www.electronjs.org/docs/api/browser-window#new-browserwindowoptions
-      worldSafeExecuteJavaScript: true,
       // nodeモジュールをレンダラープロセスで使用不可に（XSS対策）
       nodeIntegration: false,
       // 実行コンテキストを分離
       contextIsolation: true,
+      // devTools: false,
       preload: path.join(__dirname, 'preload.js')
     }
   })
