@@ -1,5 +1,5 @@
-import { app, BrowserWindow, ipcMain, Menu } from 'electron'
 import path from 'path'
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
 
 let win: BrowserWindow
 
@@ -7,6 +7,7 @@ const createWindow = (): void => {
   win = new BrowserWindow({
     width: 600,
     height: 400,
+    show: false,
     webPreferences: {
       // nodeモジュールをレンダラープロセスで使用不可に（XSS対策）
       nodeIntegration: false,
@@ -18,15 +19,19 @@ const createWindow = (): void => {
   })
 
   win.loadFile('./build/index.html')
+  // win.webContents.openDevTools()
+
+  // 表示可能になったら表示する
+  win.once('ready-to-show', () => win.show())
 
   // メニューを無効化
   Menu.setApplicationMenu(null)
-}
 
-// 多重起動を防止
-const doubleboot = app.requestSingleInstanceLock()
-if (!doubleboot) {
-  app.quit()
+  // 多重起動を防止
+  const doubleboot = app.requestSingleInstanceLock()
+  if (!doubleboot) {
+    app.quit()
+  }
 }
 
 // 初期化できたらウィンドウを作成
@@ -49,7 +54,7 @@ app.on('window-all-closed', () => {
 //---------------------------------------------------
 
 // アプリケーションを終了
-ipcMain.on('ipc-app-exit', () => app.quit())
+ipcMain.on('win-close', () => app.quit())
 
 // ウィンドウを最小化
-ipcMain.on('ipc-win-minimize', () => win.minimize())
+ipcMain.on('win-minimize', () => win.minimize())
