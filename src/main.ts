@@ -9,10 +9,6 @@ const createWindow = (): void => {
     height: 400,
     show: false,
     webPreferences: {
-      // nodeモジュールをレンダラープロセスで使用不可に（XSS対策）
-      nodeIntegration: false,
-      // 実行コンテキストを分離
-      contextIsolation: true,
       // devTools: false,
       preload: path.join(__dirname, 'preload.js')
     }
@@ -37,12 +33,12 @@ const createWindow = (): void => {
 // 初期化できたらウィンドウを作成
 app.whenReady().then(() => {
   createWindow()
+})
 
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow()
-    }
-  })
+app.on('activate', () => {
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow()
+  }
 })
 
 app.on('window-all-closed', () => {
