@@ -56,7 +56,7 @@
     "autoprefixer": "^10.4.7",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
-    "electron": "16.2.4",
+    "electron": "16.2.8",
     "electron-builder": "^23.0.3",
     "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^8.16.0",

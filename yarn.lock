@@ -2422,7 +2422,7 @@ __metadata:
     autoprefixer: ^10.4.7
     cross-env: ^7.0.3
     css-loader: ^6.7.1
-    electron: 16.2.4
+    electron: 16.2.8
     electron-builder: ^23.0.3
     electron-reload: ^2.0.0-alpha.1
     eslint: ^8.16.0
@@ -2447,16 +2447,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"electron@npm:16.2.4":
-  version: 16.2.4
-  resolution: "electron@npm:16.2.4"
+"electron@npm:16.2.8":
+  version: 16.2.8
+  resolution: "electron@npm:16.2.8"
   dependencies:
     "@electron/get": ^1.13.0
     "@types/node": ^14.6.2
     extract-zip: ^1.0.3
   bin:
     electron: cli.js
-  checksum: f3944f75d476e27e5544d20ceaeefe534475ece2019bb420cafadbf8d9f42fc1bce753b3625e7ff33dcb6aaf2271d2d513f643d019ab4cfa70e1fa6062c3cba2
+  checksum: 05177c7a798ff43d4a9df333cc5537e46235a14560b4400e9a9993972abb2e599e22e59a0c0b385bc4090ef665719ce0e90179b652d295fb1fea79bbb0fd786b
   languageName: node
   linkType: hard
 
